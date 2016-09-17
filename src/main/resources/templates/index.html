@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+	<title>Countries of the World</title>
+</head>
+<body>
+	<header>
+		<div class="container">
+			<h1><a th:href="@{/}">Countries of the World</a></h1>
+		</div>
+	</header>
+	<div class="container">
+			<form th:action="@{/byname}" method="get" class = "controls">
+				<button class="sort">Sort by Name</button>
+				<button class="sort" th:formaction="@{/bypopulation}">Sort by Population</button>
+			</form>
+
+		<div th:each="country : ${countries}" class="country">
+			<a th:href="@{'/detail/'+ ${country.name}}">
+				<img th:src="${'/images/'+country.name}+'.png'" th:alt="'Flag of '+${country.name}"/>
+				<h4 th:text="${country.name}">India</h4>
+			</a>
+		</div>
+	</div>
+</body>
+</html>
